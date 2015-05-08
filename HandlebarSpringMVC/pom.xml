@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.voya</groupId>
-  <artifactId>HandlebarSpringMVC</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>HandlebarSpringMVC Maven Webapp</name>
-  <url>http://maven.apache.org</url>
- <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.voya</groupId>
+	<artifactId>HandlebarSpringMVC</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>HandlebarSpringMVC Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.compiler.version>1.6</java.compiler.version>
@@ -50,7 +50,7 @@
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars-springmvc</artifactId>
 			<version>1.2.0</version>
-		</dependency>		
+		</dependency>
 
 		<!-- AspectJ -->
 		<dependency>
@@ -109,7 +109,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.3.0.Final</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -149,7 +153,7 @@
 		</dependency>
 
 		<!-- Remove after fix v2-services dependencies -->
-	
+
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
@@ -157,7 +161,7 @@
 		</dependency>
 
 	</dependencies>
-  <build>
-    <finalName>HandlebarSpringMVC</finalName>
-  </build>
+	<build>
+		<finalName>HandlebarSpringMVC</finalName>
+	</build>
 </project>

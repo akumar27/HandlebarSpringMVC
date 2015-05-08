@@ -1,3 +1,15 @@
-<h1>This is footer</h1>
+
+<!-- Javascript  Module Inclusion -->
+
+	<script src='/jspm_packages/traceur.js'></script><!-- optional:  if you want ES6 syntax -->
+	<script src='/jspm_packages/es6-module-loader.js'></script> <!-- optional: to load ES6-style modules -->
+	<script src='/jspm_packages/system.js'></script><!-- required -->
+	<script src='/config.js'></script><!-- required -->
+
+	<script>
+		System.config({baseURL:'/'});
+		System.import('assets/scripts/main');
+	</script>
+
 </body>
 </html>

@@ -15,21 +15,26 @@
 	<!-- turn on annotations -->
 	<context:component-scan base-package="com.voya" />
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/assets/**" location="/assets/" />	
+	<mvc:resources mapping="/jspm_packages/**" location="/jspm_packages/" />	
+	
 	<mvc:interceptors>
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />		
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 	</mvc:interceptors>
 	<aop:aspectj-autoproxy />
 
 
 	<!-- handlebars view resolver -->
 	<bean id="eachHelper" class="com.github.jknack.handlebars.helper.EachHelper" />
+	<bean id="ifHelper" class="com.github.jknack.handlebars.helper.IfHelper" />
 
-	<util:map id="helpers" value-type="com.github.jknack.handlebars.Helper">
+	<util:map id="helpersHandleBar" value-type="com.github.jknack.handlebars.Helper">
 		<entry key="each" value-ref="eachHelper" />
+		<entry key="if" value-ref="ifHelper" />
 	</util:map>
 
 	<bean class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
-		<property name="helpers" ref="helpers" />
+		<property name="helpers" ref="helpersHandleBar" />
 		<property name="cache" value="false" />
 		<property name="prefix" value="/WEB-INF/hbs/" />
 		<property name="suffix" value=".hbs" />

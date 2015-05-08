@@ -1,0 +1,50 @@
+<!-- meganav template -->
+<nav class="top-bar columns large-10" data-topbar role="navigation">
+    <ul class="title-area">
+    <li class="name"></li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+  <section class="top-bar-section">
+    <ul>
+  
+   
+      {{#megaNavigationList}}
+      <li class="has-dropdown not-click">
+        <a href="article.html" class="nav-section-link" data-tag="primary_nav_click">
+          <h4 class="nav-section-header">
+            <span>{{label}}</span>
+            <!-- span class="pn-plus">+</span>
+            <span class="pn-minus">-</span -->
+          </h4>
+        </a>
+
+          <ul class="dropdown">    
+				{{#if subNavigationLinkList}}
+				{{#subNavigationLinkList}}
+					<li class="has-dropdown not-click">
+					  <a class="nav-sub-list-item" href="{href}" data-tag="mega-menu-primary-click">
+						{{label}}<span class="fa fa-chevron-right"></span>
+					  </a>
+
+					  <ul class="megamenu-flyout-link-set dropdown" data-tag-list="mega-menu-flyout-click">
+						{{#if subNavigationLinkList}}
+							{{#subNavigationLinkList}}
+								<li>
+								  <a class="mega-menu-link" href="{{href}}"> {{label}} </a>
+								</li>
+							{{/subNavigationLinkList}}
+						{{/if}}	
+					  </ul>
+
+					</li>
+				{{/subNavigationLinkList}}
+			{{/if}}
+          </ul>
+
+      </li>
+      {{/megaNavigationList}}
+    </ul>
+  </section>
+</nav>
+
