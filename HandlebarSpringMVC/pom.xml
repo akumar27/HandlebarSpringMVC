@@ -14,6 +14,7 @@
 		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
 		<org.aspectj-version>1.7.4</org.aspectj-version>
+		<handlebars-version>2.1.0</handlebars-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -44,12 +45,12 @@
 		<dependency>
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars</artifactId>
-			<version>1.2.0</version>
+			<version>${handlebars-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars-springmvc</artifactId>
-			<version>1.2.0</version>
+			<version>${handlebars-version}</version>
 		</dependency>
 
 		<!-- AspectJ -->

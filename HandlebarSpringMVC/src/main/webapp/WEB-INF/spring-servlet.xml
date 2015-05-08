@@ -34,8 +34,6 @@
 	</util:map>
 
 	<bean class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
-		<property name="helpers" ref="helpersHandleBar" />
-		<property name="cache" value="false" />
 		<property name="prefix" value="/WEB-INF/hbs/" />
 		<property name="suffix" value=".hbs" />
 	</bean>
