@@ -1,6 +1,5 @@
 package com.voya.model;
 
-import java.awt.image.BufferStrategy;
 import java.util.List;
 
 public class MegaNavigation {

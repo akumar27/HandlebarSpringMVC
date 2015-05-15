@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="assets/styles/handlebars.css" />
+		<script src="assets/js/handlebars.runtime.js"></script>
+		<title>Precompiler Examples</title>
+	
+	</head>
+	<body>{{> home-page}}
+		<h1>Precompiler Example</h1>
+			 
+		<script>
+			{{precompile "helpers/user"}}
+		</script>
+				
+		<div> Final Output: </div>
+		
+		<div id="results">Result here</div>
+		<script>
+			var template = Handlebars.templates['helpers/user'];
+			var data = {"firstName" : "Alan" , "lastName" : "Donald"};
+			var html = template(data);
+			//alert(html);
+			document.getElementById("results").innerHTML = html;
+		</script>
+		<br><br>
+		<div>Refer Files: user.hbs and precompile-template.hbs in this project</div>
+	</body>
+</html>

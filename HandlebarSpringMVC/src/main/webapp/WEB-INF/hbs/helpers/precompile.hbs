@@ -1,0 +1,22 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="assets/styles/handlebars.css" />
+		<title>Helper - Precompile Templates</title>
+	
+	</head>
+	<body>{{> home-page}}
+		<h1>Precompile Helper</h1>
+			 
+		 <p class="bold">How To Use: </p>
+		 
+		<div><span class="bold"> Option 1 - Project Build Time Pre-compilation of Handleber templates</span>: Put all your handlebar templates in one directory and run maven script. Refer plugins section in pom.xml file for this project.
+		  All the .hbs files under /src/main/webapp/WEB-INF/hbs/precompile-hbs directory will be compiled and saved as /js/helpers.js file when you run maven script. You can run maven script in either of the following ways. 'mvn package' or 'mvn handlebars:precompile'</div>
+		<br>
+		<div><span class="bold"> Option 2 - Runtime Precompilation</span>: Use 'precompile' helper to compile a template. Example here <a href="precompileTemplate">Precompile Template</a> </div>
+		
+	
+	</body>
+</html>

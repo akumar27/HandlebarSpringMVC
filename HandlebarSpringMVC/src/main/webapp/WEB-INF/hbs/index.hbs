@@ -1,0 +1,17 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{homePageLinks.title}} Home</title
+  </head>
+  <body>
+  	<h1>{{homePageLinks.title}}</h1>
+  	{{#each homePageLinks.links}}
+  		<h3>{{categoryName}}:</h1>
+  		{{#each categoryLinks}}
+   			<span><a href="{{url}}"> {{name}} </a></span> {{#unless @last}},{{/unless}}
+  		{{/each}}
+  	{{/each}}
+	</body>
+</html>

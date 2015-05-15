@@ -15,8 +15,7 @@
 	<!-- turn on annotations -->
 	<context:component-scan base-package="com.voya" />
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/assets/**" location="/assets/" />	
-	<mvc:resources mapping="/jspm_packages/**" location="/jspm_packages/" />	
+	<mvc:resources mapping="/assets/**" location="/assets/" />		
 	
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />

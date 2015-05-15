@@ -3,7 +3,7 @@ package com.voya.model;
 public class Product {
 	private String name;
 	private String color;
-
+	
 	public String getName() {
 		return name;
 	}
