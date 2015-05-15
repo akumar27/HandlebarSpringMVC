@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="assets/styles/handlebars.css" />
+		<title>Helper - With, Each and If Examples</title>
+	
+	</head>
+	<body>
+		<h1>With, Each and If Helpers</h1>
+			 
+		 <p class="bold">How To Use: </p>
+		 <div>
+			 with a JSON like: <u>
+			 {
+	 			"author": "Amit",
+	 			"title": "First Post",
+	 			"body": "Wonderful Summer day",
+	  			postSource: {
+	    			device: "Mobile",
+	    			ipAddress: "111.222.333.444"
+	  			},
+	  			commentList: [
+	  				{
+	  					"author" : "Mark",
+	  					"body" : "After very long..."
+	  				},
+	  				{
+	  					"author" : "Steve",
+	  					"body" : "I like summer"
+	  				},
+	  				{
+	  					"author" : "Erwin",
+	  					"body" : "Off to holidays"
+	  				},
+	  				{
+	  					"author" : "Bob",
+	  					"body" : "Cannot wait for weekend anymore :)"
+	  				}
+	  			]
+	  			
+			}	</u>
+		</div>
+		<hr>
+		<p class="bold">Result:</p>
+		<div class="entry"> 
+		  <h1> <span class="bold">{{newPost.author}}: </span> {{newPost.title}}</h1>
+		  <h3>{{newPost.body}}</h3>
+		  
+		  {{#with newPost.postSource}} 
+		    <div>Device: {{device}}</div>
+		    <div>IP Address: {{ipAddress}}</div>
+		  {{/with}}
+			{{#if newPost.commentList}} 
+				<div class="bold">Comments: </div>
+				{{#each newPost.commentList}} 
+					<div>{{@index_1}}. {{author}}: {{body}}</div>
+				{{/each}}
+		  	{{/if}}
+		</div>
+		
+	
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="assets/styles/handlebars.css" />
+		<script src="assets/js/handlebars.runtime.js"></script>
+		<title>ii18n Examples</title>
+	
+	</head>
+	<body>
+		<h1>ii18n Example</h1>
+		{{i18nJs "es_ES" bundle="messages"}}
+		<div> <span class="bold"> Default:</span> {{i18n "helloWorld"}}</div>
+		<div><span class="bold"> Locale Spanish:</span> {{i18n "helloWorld"}}</div>
+		<div> <span class="bold">Locale French:</span> {{i18n "helloWorld"}}</div>
+		<div> <span class="bold">Providing message resource name:</span> {{i18n "helloWorld" bundle="myMessages"}}</div>
+	</body>
+</html>
