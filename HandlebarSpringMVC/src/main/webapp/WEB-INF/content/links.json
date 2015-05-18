@@ -30,7 +30,7 @@
 				"categoryName" : "Use different ValueResolver",
 				"categoryLinks" : 
 				[
-					{"name" : "JavaBeanValueResolver", "url" : "JavaBeanValueResolver"},
+					{"name" : "JavaBeanValueResolver", "url" : "products"},
 					{"name" : "FieldValueResolver", "url" : "FieldValueResolver"},
 					{"name" : "MapValueResolver", "url" : "MapValueResolver"},
 					{"name" : "MethodValueResolver", "url" : "MethodValueResolver"},

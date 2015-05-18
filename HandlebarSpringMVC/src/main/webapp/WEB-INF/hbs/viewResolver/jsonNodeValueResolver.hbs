@@ -5,17 +5,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="assets/styles/handlebars.css" />
 		<script src="assets/js/handlebars.runtime.js"></script>
-		<title>Products Examples</title>
+		<title>Block Examples</title>
 	
 	</head>
 	<body>{{> home-page}}
-		<h1>Products</h1>
-		{{#each productList}}
-   
-       {{name}} {{color}}<br>
-    {{/each}}
+		<h1>Json Resolver Example</h1>
+		<div id="resultDiv">Result</div>
+		<script id="result">
+		{{output}}		
+		</script>
+		<script>
+			
+			//alert(html);
+			document.getElementById("resultDiv").innerHTML = document.getElementById("result");
+		</script>
 	</body>
 </html>
-
-	
-	

@@ -4,17 +4,25 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.jknack.handlebars.Context;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.context.MethodValueResolver;
 import com.google.gson.Gson;
+import com.voya.helper.CustomHelper;
+import com.voya.helper.MessageHelper;
 import com.voya.model.Article;
 import com.voya.model.MegaNavigation;
 import com.voya.model.NavigationLink;
@@ -56,14 +64,12 @@ public class ProductController {
 		gettingStartedLink.setHref("http://www.gmail.com");
 		childOfplanningAndAdviceChild1.add(gettingStartedLink);
 
-		
 		gettingStartedLink = new NavigationLink();
 		gettingStartedLink.setLabel("Setting a Goal");
 		gettingStartedLink.setHref("http://www.voya.com");
 		childOfplanningAndAdviceChild1.add(gettingStartedLink);
 
 		ModelAndView mav = new ModelAndView("layout");
-		
 
 		List<Article> listArticle = new ArrayList<Article>();
 		Article article = new Article();
@@ -92,17 +98,16 @@ public class ProductController {
 		mav.addObject("listArticle", listArticle);
 		mav.addObject("projectType", "Voya.com");
 
-		
 		try {
-			FileSystemResource resource = new FileSystemResource("C:/Users/i707259/git_test/HandlebarSpringMVC/src/main/resources/meganav.json");
-			File file =resource.getFile();
-			BufferedReader br = new BufferedReader(
-					new FileReader(file));
-			
-			//MegaNavigation megaNavigation = new MegaNavigation();
+			FileSystemResource resource = new FileSystemResource(
+					"C:/Users/i707259/git_test/HandlebarSpringMVC/src/main/resources/meganav.json");
+			File file = resource.getFile();
+			BufferedReader br = new BufferedReader(new FileReader(file));
+
+			// MegaNavigation megaNavigation = new MegaNavigation();
 			Gson gson = new Gson();
 			MegaNavigation obj = gson.fromJson(br, MegaNavigation.class);
-			 
+
 			System.out.println(obj.toString());
 			mav.addObject("megaNavigationList", obj.getSubNavigationList());
 		} catch (FileNotFoundException e) {
@@ -111,27 +116,26 @@ public class ProductController {
 			e.printStackTrace();
 			mav.addObject("megaNavigationList", subNavigationList);
 		}
-		
-		
+
 		return mav;
 	}
 
 	@RequestMapping("/products")
 	public ModelAndView showProducts(HttpServletRequest request) {
 
-		List<Product> productList = null;//new ArrayList<Product>();
+		List<Product> productList = new ArrayList<Product>();
 		Product newProduct = new Product();
 		newProduct.setName("Apple iPhone 6");
 		newProduct.setColor("White");
-		//productList.add(newProduct);
+		productList.add(newProduct);
 		newProduct = new Product();
 		newProduct.setName("Apple iPad 3");
 		newProduct.setColor("Black");
-		//productList.add(newProduct);
+		productList.add(newProduct);
 		newProduct = new Product();
 		newProduct.setName("Samsung Galaxy");
 		newProduct.setColor("Silver");
-		//productList.add(newProduct);
+		productList.add(newProduct);
 
 		ModelAndView mav = new ModelAndView("product");
 
@@ -140,4 +144,92 @@ public class ProductController {
 		return mav;
 
 	}
+
+	@RequestMapping("/MethodValueResolver")
+	@ResponseBody
+	public String showMethodValueResolverProducts(HttpServletRequest request,
+			HttpServletResponse response) {
+		Handlebars handlebars = new Handlebars();
+		List<Product> productList = new ArrayList<Product>();
+		Product newProduct = new Product();
+		newProduct.setName("Apple iPhone 6");
+		newProduct.setColor("White");
+		productList.add(newProduct);
+		newProduct = new Product();
+		newProduct.setName("Apple iPad 3");
+		newProduct.setColor("Black");
+		productList.add(newProduct);
+		newProduct = new Product();
+		newProduct.setName("Samsung Galaxy");
+		newProduct.setColor("Silver");
+		productList.add(newProduct);
+		Handlebars.log("this is test");
+		// ModelAndView mav = new ModelAndView("product");
+		Context ctxFruits = Context.newBuilder(productList)
+				.resolver(MethodValueResolver.INSTANCE).build();
+		// String productData = "{'name' : 'Apple', 'color' : 'Red'}";
+		String output = null;
+		try {
+			output = handlebars
+					.compileInline(
+							"<a href='home'>Home</a><ul>{{#each this}}<li>{{getName}} - {{getColor}}</li>{{/each}}</table></ul>")
+					.apply(ctxFruits);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.setContentType("text/html");
+		// response.setCharacterEncoding("UTF-8");
+
+		return output;
+	}
+
+	@RequestMapping("/someCustomHelper")
+	@ResponseBody
+	public String customHelperController(HttpServletRequest request,
+			HttpServletResponse response) {
+		Handlebars handlebars = new Handlebars();
+		
+		//Registering custom helper here
+		MessageHelper messageHelper = new MessageHelper();
+		handlebars.registerHelpers(messageHelper);
+		
+		CustomHelper helper = new CustomHelper();
+		handlebars.registerHelpers(helper);
+		List<Product> productList = new ArrayList<Product>();
+		Product newProduct = new Product();
+		newProduct.setName("Apple iPhone 6");
+		newProduct.setColor("White");
+		productList.add(newProduct);
+		newProduct = new Product();
+		newProduct.setName("Apple iPad 3");
+		newProduct.setColor("Black");
+		productList.add(newProduct);
+		newProduct = new Product();
+		newProduct.setName("Samsung Galaxy");
+		newProduct.setColor("Silver");
+		productList.add(newProduct);
+		Handlebars.log("this is test");
+		// ModelAndView mav = new ModelAndView("product");
+		Context ctxFruits = Context.newBuilder(productList)
+				.resolver(MethodValueResolver.INSTANCE).build();
+		// String productData = "{'name' : 'Apple', 'color' : 'Red'}";
+		String output = null;
+		try {
+			output = handlebars
+					.compileInline(
+							"<a href='home'>Home</a><br><br>{{#if_eq  20  20 }}True - inside helper{{else}}False- inside helper{{/if_eq}}"
+							+ "<br><br><br>{{#sayHello 'Amit'}}{{/sayHello}}<br><ul>{{#each this}}<li>{{getName}} - {{getColor}}</li>{{/each}}</table></ul>")
+					.apply(ctxFruits);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.setContentType("text/html");
+		// response.setCharacterEncoding("UTF-8");
+
+		return output;
+
+	}
+
 }
