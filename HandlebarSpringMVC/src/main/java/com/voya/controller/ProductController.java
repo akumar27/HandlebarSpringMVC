@@ -219,7 +219,7 @@ public class ProductController {
 			output = handlebars
 					.compileInline(
 							"<a href='home'>Home</a><br><br>{{#if_eq  20  20 }}True - inside helper{{else}}False- inside helper{{/if_eq}}"
-							+ "<br><br><br>{{#sayHello 'Amit'}}{{/sayHello}}<br><ul>{{#each this}}<li>{{getName}} - {{getColor}}</li>{{/each}}</table></ul>")
+							+ "<br><br><br>{{#sayHello 'Amit Kumar'}}{{/sayHello}}<br><ul>{{#each this}}<li>{{getName}} - {{getColor}}</li>{{/each}}</table></ul>")
 					.apply(ctxFruits);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
