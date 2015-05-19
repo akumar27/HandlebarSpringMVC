@@ -32,6 +32,7 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Helper;
 import com.github.jknack.handlebars.JsonNodeValueResolver;
 import com.github.jknack.handlebars.Options;
+import com.github.jknack.handlebars.cache.HighConcurrencyTemplateCache;
 import com.github.jknack.handlebars.context.FieldValueResolver;
 import com.github.jknack.handlebars.context.JavaBeanValueResolver;
 import com.github.jknack.handlebars.context.MapValueResolver;
@@ -136,6 +137,12 @@ public class HomeController {
 		return mav;
 	}
 
+	@RequestMapping("/cachingExample1")
+	public ModelAndView cachingController(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("viewResolver/cachingExample1");
+		return mav;
+	}
+	
 	@RequestMapping("/precompileTemplate")
 	public ModelAndView precompileTemplateController(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("helpers/precompile-template");
@@ -188,7 +195,7 @@ public class HomeController {
 			JsonNode jsonNode = mapper.readTree(value);
 
 			Handlebars handlebars = new Handlebars();
-
+			handlebars.with(new HighConcurrencyTemplateCache());
 			Context context = Context.newBuilder(jsonNode)
 					.resolver(JsonNodeValueResolver.INSTANCE).build();
 

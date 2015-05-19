@@ -34,6 +34,7 @@
 
 	<bean class="com.github.jknack.handlebars.springmvc.HandlebarsViewResolver">
 		<property name="prefix" value="/WEB-INF/hbs/" />
+		<property name="cache" value="true" />
 		<property name="suffix" value=".hbs" />
 	</bean>
 
